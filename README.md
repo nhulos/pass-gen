@@ -1,4 +1,4 @@
-# This is simple password generator for brute-force.
+# Password Generator
 You can print name, username, phone number, date(dd-mm-yyy)...
 
 Print `gen!` for generate combinations.
