@@ -19,28 +19,6 @@ def input_num(input_text):
         print("Incorrect!")
 
 
-# generate combinations
-def generate_pass(text, numbers, min_len, max_len):
-    separators = ["", "_", "-", " "]
-    passwords = []
-
-    # add passwords to list
-    def add_pass(password):
-        if not password in passwords and min_len <= len(password) <= max_len:
-            passwords.append(password)
-
-    for t in text:
-        for n in numbers:
-            for sep in separators:
-                add_pass(t + sep + n)
-                add_pass(n + sep + t)
-        for t2 in text:
-            for sep in separators:
-                add_pass(t + sep + t2)
-
-    return passwords
-
-
 # passwords category
 def processing(data_list):
     text = []
@@ -66,6 +44,34 @@ def processing(data_list):
             for i in range(3, len(data)):
                 strip_data = data[:i]
     return text, numbers
+
+
+# generate combinations
+def generate_pass(text, numbers, min_len, max_len):
+    separators = ["", "_", "-", " "]
+    passwords = []
+
+    # add passwords to list
+    def add_pass(password):
+        if not password in passwords and min_len <= len(password) <= max_len:
+            passwords.append(password)
+
+    for sep in separators:
+        for t in text:
+            # text + number
+            for n in numbers:
+                add_pass(t + sep + n)
+                add_pass(n + sep + t)
+            # text + text
+            for t2 in text:
+                add_pass(t + sep + t2)
+
+        # number + number
+        for n in numbers:
+            for n2 in numbers:
+                add_pass(n + sep + n2)
+
+    return passwords
 
 
 # write passwords to file
