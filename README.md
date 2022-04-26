@@ -11,7 +11,7 @@ Print `gen!` for generate combinations.
 You can look generated combinations in pass.txt.
 
 ## Installation
-If you havent `git` or `python`, you need install it.
+If you haven't `git` or `python`, you need install it.
 ```
 git clone https://github.com/nhulos/pass-gen/edit/main
 cd pass-gen
