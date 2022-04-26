@@ -1,10 +1,10 @@
 # Pass Gen
 ## You can print 
 * name
-*username
+* username
 * phone number
 * date(dd-mm-yyy)
-* ...
+* other
 
 Print `gen!` for generate combinations.
 
