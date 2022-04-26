@@ -1,4 +1,4 @@
-# This is simple password generator for brute-force.
+# Pass Gen
 ## You can print 
 * name
 *username
