@@ -2,29 +2,46 @@
 import re
 
 
-def take_data():
+# get data from user: mail, name, date, phone number...
+def get_data():
     print("\nYou can print: mail, name, date(dd-mm-yyy), phone number...")
     print("gen! - finish")
     text = input("> ").strip()
     return text
 
 
-def generate_pass(text, numbers):
+# incput int data
+def input_num(input_text):
+    while True:
+        data = input(input_text).strip()
+        if data.isdigit() and int(data) > 0:
+            return int(data)
+        print("Incorrect!")
+
+
+# generate combinations
+def generate_pass(text, numbers, min_len, max_len):
     separators = ["", "_", "-", " "]
     passwords = []
+
+    # add passwords to list
+    def add_pass(password):
+        if not password in passwords and min_len <= len(password) <= max_len:
+            passwords.append(password)
 
     for t in text:
         for n in numbers:
             for sep in separators:
-                passwords.append(t + sep + n)
-                passwords.append(n + sep + t)
+                add_pass(t + sep + n)
+                add_pass(n + sep + t)
         for t2 in text:
             for sep in separators:
-                passwords.append(t + sep + t2)
-    
-    return passwords
-                
+                add_pass(t + sep + t2)
 
+    return passwords
+
+
+# passwords category
 def processing(data_list):
     text = []
     numbers = []
@@ -51,26 +68,36 @@ def processing(data_list):
     return text, numbers
 
 
+# write passwords to file
 def write_pass(passwords):
     with open("pass.txt", "w") as f:
         for i in passwords:
             f.write(i + "\n")
 
 
-# main
-data_list = []
-try:
+def main():
+    data_list = []
     while True:
-        data = take_data()
-        if data == "gen!":
-            text, numbers = processing(data_list)
+        input_data = get_data()
+        # generation passwords
+        if input_data == "gen!":
+            # min and max lenght
+            min_len = input_num("min len: ")
+            max_len = input_num("max len: ")
+            text, numbers = processing(data_list)  # categorys
             print("\nGenerating...")
-            passwords = generate_pass(text, numbers)
-            write_pass(list(set(passwords)))
+            passwords = generate_pass(
+                text, numbers, min_len, max_len)  # generate
+            write_pass(passwords)  # write to file
             print(len(passwords), "passwords was generated!")
             break
-        if data:
-            data_list.append(data)
-except KeyboardInterrupt:
-    pass
-    
+        # input data
+        if input_data:
+            data_list.append(input_data)
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        pass
