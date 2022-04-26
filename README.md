@@ -1,11 +1,17 @@
-# Password Generator
-You can print name, username, phone number, date(dd-mm-yyy)...
+# This is simple password generator for brute-force.
+## You can print 
+* name
+*username
+* phone number
+* date(dd-mm-yyy)
+* ...
 
 Print `gen!` for generate combinations.
 
 You can look generated combinations in pass.txt.
 
 ## Installation
+If you havent `git` or `python`, you need install it.
 ```
 git clone https://github.com/nhulos/pass-gen/edit/main
 cd pass-gen
