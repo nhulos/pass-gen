@@ -30,7 +30,7 @@ dnf -y install git python3
 ```
 ## Install pass-gen
 ```
-git clone https://github.com/nhulos/pass-gen/edit/main
+git clone https://github.com/nhulos/pass-gen
 cd pass-gen
 chmod +x pass_gen.py
 ./pass_gen.py
